@@ -18,6 +18,9 @@ export default function App() {
       )
     );
   }
+  function handleClearList() {
+    setItems([]);
+  }
 
   return (
     <div className="app">
@@ -27,6 +30,7 @@ export default function App() {
         items={items}
         onhandleDelete={handleDelete}
         onhandleToggle={handleToggle}
+        onhandleClearList={handleClearList}
       />
       <Stats items={items} />
     </div>
@@ -80,7 +84,12 @@ function Form({ onAddItems }) {
   );
 }
 
-function PackingList({ items, onhandleDelete, onhandleToggle }) {
+function PackingList({
+  items,
+  onhandleDelete,
+  onhandleToggle,
+  onhandleClearList,
+}) {
   const [sortBy, setSortBy] = useState("input");
 
   let sortedItems;
@@ -115,6 +124,7 @@ function PackingList({ items, onhandleDelete, onhandleToggle }) {
           <option value="description">Sort by description</option>
           <option value="packed">Sort by Packed Status</option>
         </select>
+        <button onClick={onhandleClearList}>Clear List</button>
       </div>
     </div>
   );
